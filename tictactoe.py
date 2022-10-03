@@ -163,9 +163,11 @@ We will start the game now.
                     continue
 
                 if self.check_for_win():
+                    self.display_board()
                     self.display_win()
                     break
                 elif self.check_filled():
+                    self.display_board()
                     self.display_draw()
                     break
                 
