@@ -59,7 +59,58 @@ class TicTacToe():
         self.board[pan][row][col] = self.current_player        
 
     def check_for_win(self) -> bool:
-        pass
+        # Checks the board for winning combinations (Horizontally, Vertically, Pancake-y, diagonally)
+
+        for pan in self.board:
+            # Horizontal flat
+            for row in pan:
+                if row[0] == row [1] == row[2]:
+                    return True
+            # Vertical flat
+            for col in range(3):
+                if pan[0][col] == pan[1][col] == pan[2][col]:
+                    return True
+            # Diagonal flat (top left to bottom right)
+            if pan[0][0] == pan[1][1] == pan[2][2]:
+                return True
+            # Diagonal flat (top right bottom left)
+            if pan[0][2] == pan[1][1] == pan[2][0]:
+                return True
+            
+        for row in self.board[0]:
+            for col in row:
+                # Vertical vertical
+                if self.board[0][row][col] == self.board[1][row][col] == self.board[2][row][col]:
+                    return True
+            # Diagonal vertical (bottom left to top right) 
+            if self.board[0][row][0] == self.board[0][row][1] == self.board[0][row][2]:
+                return True
+            
+            # Diagonal vertical (bottom right to top left)
+            if self.board[0][row][2] == self.board[1][row][1] == self.board[2][row][0]:
+                return True
+            
+        for col in self.board[0][0]:
+            # Vertical vertical (bottom top to top bottom)
+            if self.board[0][0][col] == self.board[1][1][col] == self.board[2][2][col]:
+                return True
+            # Vertical vertical (bottom bottom to top top)
+            if self.board[0][2][col] == self.board[1][1][col] == self.board[2][0][col]:
+                return True
+        
+        # Diagonal diagonal (bottom top left to top bottom right)
+        if self.board[0][0][0] == self.board[1][1][1] == self.board[2][2][2]:
+            return True
+        # Diagonal diagonal (bottom top right to top bottom left)
+        if self.board[0][0][2] == self.board[1][1][1] == self.board[2][2][0]:
+            return True
+        # Diagonal diagonal (bottom bottom left to top top right)
+        if self.board[0][2][0] == self.board[1][1][1] == self.board[2][0][2]:
+            return True
+        # Diagonal diagonal (bottom bottom right to top top left)
+        if self.board[0][0][2] == self.board[1][1][1] == self.board[2][0][0]:
+            return True 
+                            
 
     def print_player_win(self) -> None:
         print(f"Player {self.current_player} won !!!! ")
